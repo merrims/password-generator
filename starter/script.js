@@ -87,16 +87,23 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
-var passwordLength = {};
-var lowerCaseChoice = {};
+// var passwordLength = {};
+// var lowerCaseChoice = {};
 // Function to prompt user for password options
 function getPasswordOptions() {
-    passwordLength.answer = prompt("How long do you want your password to be? (Enter a number between 10 and 64)")
-    lowerCaseChoice.answer = confirm("Do you want lowercase characters?")
+    var passwordLength = prompt("How long do you want your password to be? (Enter a number between 10 and 64)")
+    var lowerCaseChoice = confirm("Do you want lowercase characters?")
     var upperCaseChoice = confirm("Do you want uppercase characters?")
     var numericChoice = confirm("Do you want numbers?")
     var specialCharacterChoice = confirm("Do you want special characters?")
-}
+    return options = {
+      'passwordLength': passwordLength,
+      'lowerCaseChoice': lowerCaseChoice,
+      'upperCaseChoice': upperCaseChoice,
+      'numericChoice': numericChoice,
+      'specialCharacterChoice': specialCharacterChoice
+    };
+} // return as object, use object keys to call in generatePassword function
 
 // Function for getting a random element from an array
 function getRandom(arrays) {
@@ -105,21 +112,26 @@ function getRandom(arrays) {
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
   password = "";
-  // for (var i = 0; i < passwordLength; ++i) {
-    
-  // }
-  while (password < passwordLength.answer) {
-    // if (lowerCaseChoice === true) 
-    // {
+  getPasswordOptions();
+  var numericalLength = parseInt(options.passwordLength);
+  while (password.length < numericalLength) {
+    if (options.lowerCaseChoice === true) {
       password += getRandom(lowerCasedCharacters)
-    // }
+    };
+    if (options.upperCaseChoice === true) {
+      password += getRandom(upperCasedCharacters)
+    };
+    if (options.numericChoice === true) {
+      password += getRandom(numericCharacters)
+    };
+    if (options.specialCharacterChoice === true) {
+      password += getRandom(specialCharacters)
+    };
   }
+  return password
 }
 
-generatePassword();
-console.log(password);
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
