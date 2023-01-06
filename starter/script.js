@@ -87,8 +87,7 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
-// var passwordLength = {};
-// var lowerCaseChoice = {};
+
 // Function to prompt user for password options
 function getPasswordOptions() {
     var passwordLength = prompt("How long do you want your password to be? (Enter a number between 10 and 64)")
@@ -96,6 +95,7 @@ function getPasswordOptions() {
     var upperCaseChoice = confirm("Do you want uppercase characters?")
     var numericChoice = confirm("Do you want numbers?")
     var specialCharacterChoice = confirm("Do you want special characters?")
+// return as object, use object keys to call in generatePassword function
     return options = {
       'passwordLength': passwordLength,
       'lowerCaseChoice': lowerCaseChoice,
@@ -103,7 +103,7 @@ function getPasswordOptions() {
       'numericChoice': numericChoice,
       'specialCharacterChoice': specialCharacterChoice
     };
-} // return as object, use object keys to call in generatePassword function
+}
 
 // Function for getting a random element from an array
 function getRandom(arrays) {
@@ -130,7 +130,7 @@ function generatePassword() {
     };
   }
   return password
-}
+};
 
 
 // Get references to the #generate element
