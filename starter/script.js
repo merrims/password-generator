@@ -128,8 +128,12 @@ function generatePassword() {
     if (options.specialCharacterChoice === true) {
       password += getRandom(specialCharacters)
     };
+    if (options.lowerCaseChoice === false && options.upperCaseChoice === false && options.numericChoice === false && options.specialCharacterChoice === false) {
+    confirm("Oops! You didn't select any options, please try again.");
+    getPasswordOptions();
+    };
   }
-  return password
+  return password;
 };
 
 
@@ -140,9 +144,10 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
+  return password;
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
