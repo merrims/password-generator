@@ -114,8 +114,11 @@ function getRandom(arrays) {
 function generatePassword() {
   password = "";
   getPasswordOptions();
-  var numericalLength = parseInt(options.passwordLength);
-  while (password.length < numericalLength) {
+  while (options.passwordLength < 10 || options.passwordLength > 64) {
+    confirm("Number must be between 10 and 64. Try again");
+    getPasswordOptions();
+  };
+  while (password.length < options.passwordLength) {
     if (options.lowerCaseChoice === true) {
       password += getRandom(lowerCasedCharacters)
     };
@@ -129,8 +132,8 @@ function generatePassword() {
       password += getRandom(specialCharacters)
     };
     if (options.lowerCaseChoice === false && options.upperCaseChoice === false && options.numericChoice === false && options.specialCharacterChoice === false) {
-    confirm("Oops! You didn't select any options, please try again.");
-    getPasswordOptions();
+      confirm("Oops! You didn't select any options, please try again.");
+      getPasswordOptions();
     };
   }
   return password;
